@@ -2,7 +2,7 @@
 Script to automate the CIS Microsoft 365 Foundations Benchmark application usage audit (5.5 of the CIS Microsoft 365 Foundations Benchmark v2.0)
 
 ## 5.5 (L1) Ensure the Application Usage report is reviewed at least weekly
-* **Description:**
+**Description:**
 The Application Usage report includes a usage summary for all Software as a Service 
 (SaaS) applications that are integrated with the organization's directory.
 **Rationale:**
@@ -11,9 +11,9 @@ have enabled that could cause data spillage or accidental elevation of privilege
 Attackers can often get access to data illicitly through third-party SaaS applications.
 **Audit:**
 To verify the report is being reviewed at least weekly, confirm that the necessary 
-procedures are in place and being followed. *
+procedures are in place and being followed.
 
-* This script is designed for use in the console and will return a list of applications that deviate from a pre-determined list of trusted baseline applications used in your tenant. Further investigation of unknown applications will need to be investigated within Microsoft Entra. This script may also act as a baseline template and could be built into a more robust script.* 
+This script is designed for use in the console and will return a list of applications that deviate from a pre-determined list of trusted baseline applications used in your tenant. Further investigation of unknown applications will need to be investigated within Microsoft Entra. This script may also act as a baseline template and could be built into a more robust script.
 
 # Overall Usage
 1. Create an Entra application that this script will use for authentication and authorization
