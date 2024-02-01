@@ -1,5 +1,5 @@
 # m365-cis-app-audit
-Script to automate the CIS Microsoft 365 Foundations Benchmark application usage audit (5.5 of the CIS Microsoft 365 Foundations Benchmark v2.0)
+Script to automate the CIS Microsoft 365 Foundations Benchmark application usage audit (5.5 of the CIS Microsoft 365 Foundations Benchmark v2.0). Description of audit here:
 
 ### 5.5 (L1) Ensure the Application Usage report is reviewed at least weekly
 - **Description:**
@@ -20,3 +20,27 @@ This script is designed for use in the console and will return a list of applica
 2. Use baseline_applications.py, to add/remove/update your list of trusted applications in use by users in your tenant
 3. Run script, applications that do not exist in your baseline_applications list will be printed to the console
 4. Investigate applications in Entra to determine malicious activity
+
+## Entra Application Creation, Authentication, and Permissions:
+### Creation
+- To interact with Entra using Python (or any other programing language), you first need to create your own application, assign it permissions, and upload certificates for authentication.
+1. Navigate to "entra.microsoft.com" > "Applications" > "Enterprise applications"
+2. Select "New application" > "Create your own application"
+3. Name your application and leave the default "Non-gallery" option
+4. When the application has been created, navigate to "App registrations" in the navigation blade, and find/select your application
+5. In "Overview", copy the "Client Id" and "Tenant Id" values for use in the script
+### Authentication 
+6. Navigate to "Certificates & secrets" > "Certificates" > "Upload certificate"
+7. Upload your certificate (see steps below for creation), and copy the "Thumbprint" value to use in the script
+### Authorization
+8. Navigate to "API permissions" > "Add a permission" > "Microsoft Graph" > "Application permissions"
+9. Scroll down to find "Reports" and select "Reports.Read.All"
+10. As this is an elevated permission, select "Grant admin consent" on the main API Permissions page.
+ 
+
+## Certificate Creation
+Using openssl, a .key and .cer file need to be generated for client authentication 
+Commands:
+1. openssl genrsa -out <key_name>.key 2048
+2. openssl req -new -key <your_key_name>.key -out <your_csr_name>.csr
+3. openssl x509 -req -in <csr_file_name>.csr -signkey <your_key_name>.key -out <your_certificate_name>.crt -days 180
